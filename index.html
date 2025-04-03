@@ -12,9 +12,29 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             background-color: #f0f2f5;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Main content wrapper */
+        .content-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         /* Desktop Layout */
@@ -22,6 +42,10 @@
             body {
                 max-width: 1200px;
                 margin: 0 auto;
+                padding: 20px;
+            }
+
+            .content-wrapper {
                 padding: 20px;
             }
 
@@ -40,6 +64,11 @@
                 font-size: 1.8em;
             }
 
+            .must-do-heading {
+                color: crimson !important;
+                border-bottom: 3px solid crimson !important;
+            }
+
             .topic-container {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -53,6 +82,7 @@
                 padding: 20px;
                 box-shadow: 0 2px 4px rgba(0,0,0,0.1);
                 transition: transform 0.3s ease;
+                border: none;
             }
 
             .resource-tile:hover {
@@ -66,6 +96,57 @@
                 font-size: 1.1em;
                 display: block;
             }
+
+            /* Special styling for Must do! tiles */
+            .must-do-tile {
+                background: linear-gradient(135deg, #fff0f0, #fff);
+                border-left: none;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .must-do-tile::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0;
+                height: 100%;
+                background: crimson;
+                transition: width 0.3s ease;
+                z-index: 1;
+            }
+
+            .must-do-tile:hover {
+                transform: translateY(-7px) scale(1.02);
+                box-shadow: 0 8px 15px rgba(220, 20, 60, 0.15);
+            }
+
+            .must-do-tile:hover::before {
+                width: 0;
+            }
+
+            .must-do-tile a {
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                position: relative;
+                z-index: 2;
+            }
+
+            .must-do-tile a::before {
+                content: '🔥';
+                margin-right: 10px;
+                font-size: 1.1em;
+                opacity: 0.8;
+                transition: all 0.3s ease;
+            }
+
+            .must-do-tile:hover a::before {
+                opacity: 1;
+                transform: scale(1.2);
+            }
         }
 
         /* Mobile Layout */
@@ -75,6 +156,10 @@
                 background: #fff;
             }
 
+            .content-wrapper {
+                padding: 10px;
+            }
+            
             h1 {
                 font-size: 1.6em;
                 color: #1a237e;
@@ -97,8 +182,8 @@
 
             .resource-tile {
                 margin: 8px 0;
-                border-bottom: 1px solid #e0e0e0;
                 transition: all 0.3s ease;
+                border: none;
             }
 
             .resource-tile a {
@@ -139,21 +224,44 @@
             h2:active {
                 background: #c5cae9;
             }
+
+            .must-do-tile {
+                border-left: none;
+                border-bottom: none;
+                background: linear-gradient(90deg, #fff0f0, #fff);
+            }
+
+            .must-do-tile a {
+                color: #c41e3a;
+            }
+
+            .must-do-tile a::after {
+                color: crimson;
+            }
         }
         footer {
-            text-align: left;
+            background-color: #e7e5e5;
+            width: 100vw;
+            text-align: center;
             padding: 30px 0;
             font-family: 'Agbalumo', cursive;
             color: #5e5e5e;
             font-size: 3em;
             font-weight: bold;
-            margin-top: 40px;
-            padding-left: 20px;
-            background-color: #e7e5e5;
-            width: auto;
+            margin-top: auto;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
         }
 
         @media screen and (max-width: 768px) {
+            .content-wrapper {
+                padding: 10px;
+            }
+            
             footer {
                 padding: 20px;
                 font-size: 2.5em;
@@ -162,148 +270,162 @@
     </style>
 </head>
 <body>
-    <h1>JEE Main 2025 - Physical Chemistry Resources</h1>
+    <div class="content-wrapper">
+        <h1>JEE Main 2025 - Physical Chemistry Resources</h1>
 
-    <h2>Mole Concept</h2>
-    <div class="topic-container">
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/abhyaas-series-mole-concept-jee-main-2025-january/I2JWY353">Abhyaas Series - Mole Concept</a>
+        <h2>Mole Concept</h2>
+        <div class="topic-container">
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/abhyaas-series-mole-concept-jee-main-2025-january/I2JWY353">Abhyaas Series - Mole Concept</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/final-shot-mole-concept-jee-main-2025-january/OCQW9SE3">Final Shot - Mole Concept</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/pyqs-practice-session-mole-concept-stoichiometry/SZ6KOZMP">PYQs Practice Session - Mole Concept & Stoichiometry</a>
+            </div>
         </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/final-shot-mole-concept-jee-main-2025-january/OCQW9SE3">Final Shot - Mole Concept</a>
+        
+        <h2>Atomic Structure</h2>
+        <div class="topic-container">
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/abhyaas-series-atomic-structure-jee-main-2025-january/G0HZT0RF">Abhyaas Series - Atomic Structure</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/final-shot-atomic-structure-jee-main-2025-january/6XDLA5FN">Final Shot - Atomic Structure</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/pyqs-practice-session-atomic-structure/6P6FPW93">PYQs Practice Session - Atomic Structure</a>
+            </div>
         </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/pyqs-practice-session-mole-concept-stoichiometry/SZ6KOZMP">PYQs Practice Session - Mole Concept & Stoichiometry</a>
+        
+        <h2>Chemical Equilibrium</h2>
+        <div class="topic-container">
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/abhyaas-series-redox-reactions-chemical-equilibrium/QD2ITOC2">Abhyaas Series - Redox Reactions & Chemical Equilibrium</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/final-shot-chemical-equilibrium-jee-main-2025-january/DAS02IJV">Final Shot - Chemical Equilibrium</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/pyqs-practice-session-chemical-equilibrium/DF1GHZBG">PYQs Practice Session - Chemical Equilibrium</a>
+            </div>
         </div>
-    </div>
-    
-    <h2>Atomic Structure</h2>
-    <div class="topic-container">
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/abhyaas-series-atomic-structure-jee-main-2025-january/G0HZT0RF">Abhyaas Series - Atomic Structure</a>
+        
+        <h2>Ionic Equilibrium</h2>
+        <div class="topic-container">
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/final-shot-ionic-equilibrium-jee-main-2025-january/BFC82KCP">Final Shot - Ionic Equilibrium</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/abhyaas-series-ionic-equilibrium-jee-main-2025-january/T0LMJLXL">Abhyaas Series - Ionic Equilibrium</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/pyqs-series-ionic-equilibrium-jee-main-2025-january/CVDCVAR0">PYQs Series - Ionic Equilibrium</a>
+            </div>
         </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/final-shot-atomic-structure-jee-main-2025-january/6XDLA5FN">Final Shot - Atomic Structure</a>
+        
+        <h2>Redox Reactions</h2>
+        <div class="topic-container">
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/final-shot-redox-reactions-jee-main-2025-january/E40XL564">Final Shot - Redox Reactions</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/abhyaas-series-redox-reactions-chemical-equilibrium/QD2ITOC2">Abhyaas Series - Redox Reactions & Chemical Equilibrium</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/pyqs-series-redox-reactions-equivalent-concept/4FL05LU6">PYQs Series - Redox Reactions & Equivalent Concept</a>
+            </div>
         </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/pyqs-practice-session-atomic-structure/6P6FPW93">PYQs Practice Session - Atomic Structure</a>
+        
+        <h2>Thermochemistry</h2>
+        <div class="topic-container">
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/final-shot-thermochemistry-jee-main-2025-january/DAB4HTOB">Final Shot - Thermochemistry</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/pyqs-series-thermochemistry-jee-main-2025-january/U046SQZJ">PYQs Series - Thermochemistry</a>
+            </div>
         </div>
-    </div>
-    
-    <h2>Chemical Equilibrium</h2>
-    <div class="topic-container">
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/abhyaas-series-redox-reactions-chemical-equilibrium/QD2ITOC2">Abhyaas Series - Redox Reactions & Chemical Equilibrium</a>
+        
+        <h2>Chemical Kinetics</h2>
+        <div class="topic-container">
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/final-shot-chemical-kinetics-jee-main-2025-january/0QRLKB8T">Final Shot - Chemical Kinetics</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/abhyaas-series-chemical-kinetics-jee-main-2025-january/1GKNUXSA">Abhyaas Series - Chemical Kinetics</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/pyqs-series-chemical-kinetics-jee-main-2025-january/H5GPRA3W">PYQs Series - Chemical Kinetics</a>
+            </div>
         </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/final-shot-chemical-equilibrium-jee-main-2025-january/DAS02IJV">Final Shot - Chemical Equilibrium</a>
+        
+        <h2>Electrochemistry</h2>
+        <div class="topic-container">
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/abhyaas-series-electrochemistry-jee-main-2025-january/L3VAFPE8">Abhyaas Series - Electrochemistry</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/final-shot-electrochemistry-jee-main-2025-january/53I0R31G">Final Shot - Electrochemistry</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/pyqs-series-electrochemistry-jee-main-2025-january/KE5P41DO">PYQs Series - Electrochemistry</a>
+            </div>
         </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/pyqs-practice-session-chemical-equilibrium/DF1GHZBG">PYQs Practice Session - Chemical Equilibrium</a>
+        
+        <h2>Liquid Solutions</h2>
+        <div class="topic-container">
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/abhyaas-series-liquid-solution-jee-main-2025-january/I3FQNSB0">Abhyaas Series - Liquid Solutions (1)</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/abhyaas-series-liquid-solution-jee-main-2025-january/OHQPJ2RO">Abhyaas Series - Liquid Solutions (2)</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/final-shot-liquid-solution-jee-main-2025-january/4ICK7G7I">Final Shot - Liquid Solutions</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/pyqs-series-liquid-solution-jee-main-2025-january/5RM5093R">PYQs Series - Liquid Solutions</a>
+            </div>
         </div>
-    </div>
-    
-    <h2>Ionic Equilibrium</h2>
-    <div class="topic-container">
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/final-shot-ionic-equilibrium-jee-main-2025-january/BFC82KCP">Final Shot - Ionic Equilibrium</a>
+        
+        <h2>Full Syllabus</h2>
+        <div class="topic-container">
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/full-syllabus-practice-session-physical-chemistry/047IGWDH">Full Syllabus Practice - Part 1</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/full-syllabus-practice-session-physical-chemistry/BUCLIOUW">Full Syllabus Practice - Part 2</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/full-syllabus-practice-session-physical-chemistry/8F54GL0U">Full Syllabus Practice - part 3</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/full-syllabus-practice-session-physical-chemistry/JSFFU3VM">Full Syllabus Practice - Part 4</a>
+            </div>
+            <div class="resource-tile">
+                <a href="https://unacademy.com/class/full-syllabus-practice-session-physical-chemistry/27YUKQUX">Full Syllabus Practice - Part 5</a>
+          </div>
         </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/abhyaas-series-ionic-equilibrium-jee-main-2025-january/T0LMJLXL">Abhyaas Series - Ionic Equilibrium</a>
+        
+        <h2 class="must-do-heading">Must do!</h2>
+        <div class="topic-container">
+            <div class="resource-tile must-do-tile">
+                <a href="https://www.youtube.com/watch?v=WHIIDi9vp3w">Jee Main January Questions Organic Chemistry</a>
+            </div>
+            <div class="resource-tile must-do-tile">
+                <a href="https://www.youtube.com/live/Ko5wWGaKT88?si=k0ngDMZE6G9eAJUd&t=612">Physical Chemistry Must do!</a>
+            </div>
+            <div class="resource-tile must-do-tile">
+                <a href="https://www.youtube.com/live/Ko5wWGaKT88?si=_v74LY3pk1eovWLL&t=9000">Inorganic Chemistry Must do!</a> 
+            </div>
+            <div class="resource-tile must-do-tile">
+                <a href="https://www.youtube.com/live/Ko5wWGaKT88?si=0oDX3ZFyXaQcg0o6&t=21995">Organic Chemistry Must do!</a> 
+            </div>
         </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/pyqs-series-ionic-equilibrium-jee-main-2025-january/CVDCVAR0">PYQs Series - Ionic Equilibrium</a>
-        </div>
-    </div>
-    
-    <h2>Redox Reactions</h2>
-    <div class="topic-container">
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/final-shot-redox-reactions-jee-main-2025-january/E40XL564">Final Shot - Redox Reactions</a>
-        </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/abhyaas-series-redox-reactions-chemical-equilibrium/QD2ITOC2">Abhyaas Series - Redox Reactions & Chemical Equilibrium</a>
-        </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/pyqs-series-redox-reactions-equivalent-concept/4FL05LU6">PYQs Series - Redox Reactions & Equivalent Concept</a>
-        </div>
-    </div>
-    
-    <h2>Thermochemistry</h2>
-    <div class="topic-container">
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/final-shot-thermochemistry-jee-main-2025-january/DAB4HTOB">Final Shot - Thermochemistry</a>
-        </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/pyqs-series-thermochemistry-jee-main-2025-january/U046SQZJ">PYQs Series - Thermochemistry</a>
-        </div>
-    </div>
-    
-    <h2>Chemical Kinetics</h2>
-    <div class="topic-container">
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/final-shot-chemical-kinetics-jee-main-2025-january/0QRLKB8T">Final Shot - Chemical Kinetics</a>
-        </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/abhyaas-series-chemical-kinetics-jee-main-2025-january/1GKNUXSA">Abhyaas Series - Chemical Kinetics</a>
-        </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/pyqs-series-chemical-kinetics-jee-main-2025-january/H5GPRA3W">PYQs Series - Chemical Kinetics</a>
-        </div>
-    </div>
-    
-    <h2>Electrochemistry</h2>
-    <div class="topic-container">
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/abhyaas-series-electrochemistry-jee-main-2025-january/L3VAFPE8">Abhyaas Series - Electrochemistry</a>
-        </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/final-shot-electrochemistry-jee-main-2025-january/53I0R31G">Final Shot - Electrochemistry</a>
-        </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/pyqs-series-electrochemistry-jee-main-2025-january/KE5P41DO">PYQs Series - Electrochemistry</a>
-        </div>
-    </div>
-    
-    <h2>Liquid Solutions</h2>
-    <div class="topic-container">
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/abhyaas-series-liquid-solution-jee-main-2025-january/I3FQNSB0">Abhyaas Series - Liquid Solutions (1)</a>
-        </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/abhyaas-series-liquid-solution-jee-main-2025-january/OHQPJ2RO">Abhyaas Series - Liquid Solutions (2)</a>
-        </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/final-shot-liquid-solution-jee-main-2025-january/4ICK7G7I">Final Shot - Liquid Solutions</a>
-        </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/pyqs-series-liquid-solution-jee-main-2025-january/5RM5093R">PYQs Series - Liquid Solutions</a>
-        </div>
-    </div>
-    
-    <h2>Full Syllabus</h2>
-    <div class="topic-container">
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/full-syllabus-practice-session-physical-chemistry/047IGWDH">Full Syllabus Practice - Part 1</a>
-        </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/full-syllabus-practice-session-physical-chemistry/BUCLIOUW">Full Syllabus Practice - Part 2</a>
-        </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/full-syllabus-practice-session-physical-chemistry/8F54GL0U">Full Syllabus Practice - part 3</a>
-        </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/full-syllabus-practice-session-physical-chemistry/JSFFU3VM">Full Syllabus Practice - Part 4</a>
-        </div>
-        <div class="resource-tile">
-            <a href="https://unacademy.com/class/full-syllabus-practice-session-physical-chemistry/27YUKQUX">Full Syllabus Practice - Part 5</a>
-      </div>
     </div>
 
-
-</body>
-    </div>
-    
     <footer>
         BJ SIR OP✨
     </footer>
